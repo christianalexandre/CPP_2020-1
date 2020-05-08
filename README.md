@@ -3,8 +3,15 @@
 
 # Projeto para a disciplina de c++  
 
-<h3>08/05/2020</h3>
+<h3>v1</h3>
 <ul>
   <li>Menu principal</li>
   <li>Inserir registros no arquivo</li>
+</ul>
+
+<h3>v2</h3>
+<ul>
+  <li>Correção de fluxos</li>
+  <li>Retirado exit(0)</li>
+  <li>Listar lógico</li>
 </ul>
