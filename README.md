@@ -1,4 +1,4 @@
-# CPP_2020-1
+# Registros de eventos em uma arquivo binário
 
 
 # Projeto para a disciplina de c++  
