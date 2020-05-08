@@ -12,7 +12,7 @@ struct Log {
 	int id; // valor chave
 	char data[8]; // xx/xx/xx
 	char hora[5]; // xx:xx
-	int tipo; // 0 para perda de vÌdeo e 1 para detecÁ„o de movimento
+	int tipo; // 0 para perda de v√≠deo e 1 para detec√ß√£o de movimento
 	
 }; // 24 bytes 
 
@@ -20,7 +20,7 @@ struct Log {
 const string NOMEARQUIVO = "log.dat";
 
 
-// funÁ„o para capturar os dados da struct
+// fun√ß√£o para capturar os dados da struct
 Log capturaDados(){
 	
 	// struct
@@ -33,7 +33,7 @@ Log capturaDados(){
 	cout << "Informe a ID: ";
 	cin >> evento.id;	
 		
-	cout << endl << endl << "[0] = Perda de vÌdeo || [1] DetecÁ„o de movimento" << endl;
+	cout << endl << endl << "[0] = Perda de v√≠deo || [1] Detec√ß√£o de movimento" << endl;
 	cout << "Informe o tipo de evento: ";
 	cin >> evento.tipo;	
 	
@@ -55,7 +55,7 @@ int escreveDados(Log evento){
 	
 	ofstream file;
 	
-	// abre o arquivo log.dat para saida de dados, do tipo bin·rio e para inserÁ„o ao final
+	// abre o arquivo log.dat para saida de dados, do tipo bin√°rio e para inser√ß√£o ao final
 	file.open(NOMEARQUIVO.c_str(), ios::out | ios::binary | ios::app);
 	
 	// se arquivo estiver aberto, escreve os dados da struct no arquivo e fecha
@@ -71,7 +71,7 @@ int escreveDados(Log evento){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -90,14 +90,14 @@ int main() {
 	for(int i=0;;){
 	
 		system("cls");
-		cout << endl << "\t" << ">>>> Menu de opÁıes <<<<" << "\t" << endl;
+		cout << endl << "\t" << ">>>> Menu de op√ß√µes <<<<" << "\t" << endl;
 		cout << endl;
 		cout << "1 - Incluir" << endl;
 		cout << "2 - Exluir" << endl;
 		cout << "3 - Alterar" << endl;
 		cout << "4 - Consultar" << endl;
-		cout << "5 - Listar lÛgico" << endl;
-		cout << "6 - Lista fÌsico" << endl;
+		cout << "5 - Listar l√≥gico" << endl;
+		cout << "6 - Lista f√≠sico" << endl;
 		cout << "7 - Propriedades" << endl;
 		cout << "99 - Sair" << endl;
 		cout << endl;
@@ -110,10 +110,10 @@ int main() {
 			// declara struct
 			Log evento; 
 			
-			// variavel usada para pegar o retorno da funÁ„o
+			// variavel usada para pegar o retorno da fun√ß√£o
 			int opcao1;
 			
-			// chama funÁ„o pra pegar dados
+			// chama fun√ß√£o pra pegar dados
 			evento = capturaDados(); 
 			
 			// chama funcao para escrever no arquivo
@@ -142,7 +142,7 @@ int main() {
 				else if(opcao1 == 99){
 				
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					exit(0);
 					
 				}
@@ -151,7 +151,7 @@ int main() {
 					
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					exit(0);
 					
 				}
@@ -185,13 +185,13 @@ int main() {
 			return(4);
 			
 		}
-		// listar lÛgico
+		// listar l√≥gico
 		else if(opcao == 5){
 			
 			return(5);
 			
 		}
-		// listar fÌsico
+		// listar f√≠sico
 		else if(opcao == 6){
 			
 			return(6);
@@ -207,16 +207,16 @@ int main() {
 		else if(opcao == 99){
 			
 			system("cls");
-			cout << "PROGRAMA FINALIZADO PELO USU¡RIO" << endl << endl;
+			cout << "PROGRAMA FINALIZADO PELO USU√ÅRIO" << endl << endl;
 			exit(0);
 			
 		}
-		// opÁ„o inv·lida
+		// op√ß√£o inv√°lida
 		else{
 			
 			system("cls");
 			cout << "PROGRAMA INTERROMPIDO POR ERRO" << endl << endl;
-			cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+			cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 			system("pause");	
 					
 		}
