@@ -1,4 +1,4 @@
-# Registros de eventos em uma arquivo binário
+# Registros de eventos em um arquivo binário
 
 
 # Projeto para a disciplina de c++  
