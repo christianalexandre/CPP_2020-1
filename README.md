@@ -15,3 +15,10 @@
   <li>Retirado exit(0)</li>
   <li>Listar lógico</li>
 </ul>
+
+<h3>v3</h3>
+<ul>
+  <li>Trocado variavel de entrada TIPO</li>
+  <li>Ajustado a saida em tela do listar</li>
+  <li>Adicionado propriedades</li>
+</ul>
