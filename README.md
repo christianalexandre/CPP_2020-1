@@ -28,7 +28,7 @@
   <li>Exclusão lógica de dados a partir da ID</li>
 </ul>
 
-<h3>v4</h3>
+<h3>v5</h3>
 <ul>
   <li>Exclusão lógica de dados a partir do campo TIPO, exclui o primeiro registro que encontrar</li>
 </ul>
