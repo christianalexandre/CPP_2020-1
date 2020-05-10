@@ -49,3 +49,8 @@
 <ul>
   <li>Adicionado inclusão de registros apenas quando a ID não existe, para evitar que o campo chave seja duplicado</li>  
 </ul>
+
+<h3>v9</h3>
+<ul>
+  <li>Adicionado alteração de registros apenas quando a ID não existe, para evitar que o campo chave seja duplicado</li>  
+</ul>
