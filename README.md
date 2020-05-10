@@ -3,6 +3,18 @@
 
 # Projeto para a disciplina de c++  
 
+<h3>Release</h3>
+<ul>
+  <li>Menu de navegação</li>
+  <li>Inclusão impedindo ID duplicada</li>
+  <li>Exclusão por ID e TIPO</li>
+  <li>Alteração por ID e TIPO</li>
+  <li>Consulta por ID e TIPO</li>
+  <li>Listagem lógica</li>
+  <li>Listagem física</li>
+  <li>Propriedades</li>
+</ul>
+
 <h3>v1</h3>
 <ul>
   <li>Menu principal</li>
