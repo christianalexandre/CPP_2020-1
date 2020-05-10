@@ -4,7 +4,7 @@
 # Projeto para a disciplina de c++ 
 
 <h3>Objetivos</h3>
-<p>Desenvolver em c++ um programa que receba a entrada de um pseudo evento vindo de uma câmera de segurança e armanene em um arquivo binário criado na raiz do mesmo. Esse registro não poderá ter seu campo chave e após seu registro poderá ser consultado, modificado e até excluído.</p>
+<p>Desenvolver em c++ um programa que receba a entrada de um pseudo evento vindo de uma câmera de segurança e armanene em um arquivo binário criado na raiz do mesmo. Esse registro não poderá ter seu campo chave duplicado e posteriormente poderá ser consultado, modificado e até excluído.</p>
 
 <h3>Release</h3>
 <ul>
