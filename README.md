@@ -13,7 +13,7 @@
 <ul>
   <li>Correção de fluxos</li>
   <li>Retirado exit(0)</li>
-  <li>Listar lógico</li>
+  <li>Listar físico</li>
 </ul>
 
 <h3>v3</h3>
