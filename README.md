@@ -44,3 +44,8 @@
   <li>Adicionado consulta de registros por TIPO</li>
   <li>Adicionado listagem lógica</li>
 </ul>
+
+<h3>v8</h3>
+<ul>
+  <li>Adicionado inclusão de registros apenas quando a ID não existe, para evitar que o campo chave seja duplicado</li>  
+</ul>
