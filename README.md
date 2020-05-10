@@ -22,3 +22,8 @@
   <li>Ajustado a saida em tela do listar</li>
   <li>Adicionado propriedades</li>
 </ul>
+
+<h3>v4</h3>
+<ul>
+  <li>Exclusão lógica de dados a partir da ID</li>
+</ul>
