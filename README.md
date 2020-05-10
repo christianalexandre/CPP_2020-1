@@ -32,3 +32,9 @@
 <ul>
   <li>Exclusão lógica de dados a partir do campo TIPO, exclui o primeiro registro que encontrar</li>
 </ul>
+
+<h3>v6</h3>
+<ul>
+  <li>Alteração de registros a partir de ID ou TIPO</li>
+  <li>Consulta de registros a partir da ID</li>
+</ul>
