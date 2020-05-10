@@ -1,0 +1,1446 @@
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <cstdlib>
+#include <locale.h>
+
+using namespace std;
+
+
+struct Log {
+	
+	int id; // valor chave
+	char data[10]; // xx/xx/xx
+	char hora[6]; // xx:xx
+	char tipo[8]; // PERDA para perda de vídeo e DETEC para detecção de movimento
+	
+}; // 28 bytes 
+
+
+// nome do arquivo bin
+const string ARQ = "log.dat";
+
+
+// captura os dados e armazena na struct
+Log capturaDados(){
+	
+	// struct
+	Log evento;
+		
+	system("cls");
+	cout << endl << "\t" << ">>>> Captura dados <<<<" << "\t" << endl;
+	cout << endl;
+	
+	cout << "Informe a ID: ";
+	cin >> evento.id;	
+	
+	cin.ignore();
+		
+	cout << endl << endl << "[PERDA] = Perda de vídeo || [DETEC] Detecção de movimento" << endl;
+	cout << "Informe o tipo de evento: ";
+	gets(evento.tipo);		
+	
+	cout << endl << endl << "Exemplo de data: XX/XX/XX" << endl;
+	cout << "Insira a data: ";
+	gets(evento.data);			
+			
+	cout << endl << endl << "Exemplo de hora: XX:XX" << endl;
+	cout << "Insira a data: ";	
+	gets(evento.hora);
+	
+	return evento;
+	
+} 
+
+// captura os dados e armazena na struct
+Log capturanovoDados(){
+	
+	// struct
+	Log evento;
+		
+	system("cls");
+	cout << endl << "\t" << ">>>> Captura novos dados <<<<" << "\t" << endl;
+	cout << endl;
+	
+	cout << "Informe a nova ID: ";
+	cin >> evento.id;	
+	
+	cin.ignore();
+		
+	cout << endl << endl << "[PERDA] = Perda de vídeo || [DETEC] Detecção de movimento" << endl;
+	cout << "Informe o novo tipo de evento: ";
+	gets(evento.tipo);		
+	
+	cout << endl << endl << "Exemplo de data: XX/XX/XX" << endl;
+	cout << "Insira a nova data: ";
+	gets(evento.data);			
+			
+	cout << endl << endl << "Exemplo de hora: XX:XX" << endl;
+	cout << "Insira a nova data: ";	
+	gets(evento.hora);
+	
+	return evento;
+	
+} 
+
+// pega a informação após alguma ação no programa
+int chamaMenu(){
+	
+	int x;
+	
+	cout << "0 - Menu principal" << endl;
+	cout << "99 - Sair" << endl;
+	cout << endl;
+	cout << "Digite a opcao desejada: ";
+	cin >> x;
+	
+	return x;
+}
+	
+
+// insere os dados da struct no arquivo
+int escreveDados(Log evento){
+	
+	// saida para o arquivo 
+	ofstream file;
+	
+	// abre o arquivo log.dat para saida de dados, do tipo binário e para inserção ao final
+	file.open(ARQ.c_str(), ios::out | ios::binary | ios::app);
+	
+	// se arquivo estiver aberto, escreve os dados da struct no arquivo e fecha
+	if(file.is_open()){
+		
+		file.write((char*)&evento, sizeof(Log));
+		
+		file.close();
+		
+		return 1;
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+	
+}
+
+int listarLogico(){
+	
+	// entrada para a programa
+	ifstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::binary);
+	
+	// se arquivo estiver aberto, escreve os dados da struct no arquivo e fecha
+	if(file.is_open()){
+		
+		int tam;
+		
+		// struct para receber os registros
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+		
+		// tabelação para exibir a lista
+		cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;	
+		
+		while(file.tellg() < tam){
+			
+			// pega um registro do arquivo
+            file.read((char*)&evento, sizeof(Log));
+            
+            if(evento.id != -1){
+			
+	            // Mostra o registro em tela                
+	            cout << evento.id << "\t" << evento.tipo << "\t" << evento.data << "\t" << evento.hora << endl;	
+						
+			}
+		}
+		
+		file.close();
+		
+		return 1;
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+	
+	
+	
+}
+
+
+// mostra na tela todos os registros armazenados no arquivo
+int listarFisico(){
+	
+	// entrada para a programa
+	ifstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::binary);
+	
+	// se arquivo estiver aberto, escreve os dados da struct no arquivo e fecha
+	if(file.is_open()){
+		
+		int tam;
+		
+		// struct para receber os registros
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+		
+		// tabelação para exibir a lista
+		cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;	
+		
+		while(file.tellg() < tam){
+			
+			// pega um registro do arquivo
+            file.read((char*)&evento, sizeof(Log));
+            
+            // Mostra o registro em tela                
+            cout << evento.id << "\t" << evento.tipo << "\t" << evento.data << "\t" << evento.hora << endl;			
+			
+		}
+		
+		file.close();
+		
+		return 1;
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+	
+	
+}
+
+int qtdeReg(){
+	
+	// entrada para a programa
+	ifstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::binary);
+	
+	// se arquivo estiver aberto, calculo a qtde e fecha
+	if(file.is_open()){
+
+		int tam, i=0;
+		
+		// struct para receber os registros
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);	
+		
+		while(file.tellg() < tam){
+			
+			// pega um registro do arquivo
+            file.read((char*)&evento, sizeof(Log));
+		
+			if(evento.id !=-1){
+				i++;
+			}
+			
+		}
+		
+		file.close();
+		
+		return i;
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}	
+	
+}
+
+int tamReg(){
+	
+	// ID = 4 bytes
+	// DATA = 10 bytes
+	// HORA = 6 bytes
+	// TIPO = 8 bytes
+	// TOTAL = 28 bytes
+
+	return (28);
+}
+
+int retornaProp(){
+
+	// entrada para a programa
+	ifstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::binary);
+	
+	// se arquivo estiver aberto, calculo o tamanho e fecha
+	if(file.is_open()){
+
+		int arq, qtde, tam;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		arq = file.tellg();		
+		
+		// calcula a quantidade de registros
+		qtde = qtdeReg();
+		if((qtde < 0) || (qtde > 200)){
+			cout << endl << "Ops, tivemos algum erro ao calcular a quantidade de registros" << endl;
+		}
+		
+		// calcula o tamanho dos registros
+		tam = tamReg();
+		if(tam != 28){
+			cout << endl << "Ops, tivemos algum erro ao calcular o tamanho de cada registro" << endl;
+		}
+		
+		// mostra na tela
+		cout << "Tamanho do arquivo: " << arq << endl;
+		
+		cout << endl << "Quantidade de registros: " << qtde << endl;
+		
+		cout << endl << "Tamanho de cada registro: " << tam << endl;
+		
+		file.close();
+		
+		return 1;
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+		
+}
+
+// excluir registro a partir da ID
+int excluiId(){
+	
+	int idExcluir, tam, aux = -1, paraOlaco = 0;
+	
+	system("cls");
+	cout << endl << "\t" << ">>>> Excluir por ID <<<<" << "\t" << endl;
+	cout << endl;	
+	
+	cout << "Entre com a ID: ";
+	cin >> idExcluir;
+	
+	// chama o arquivo
+	fstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
+	
+	if(file.is_open()){
+
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+
+        while ((file.tellg() < tam) && (paraOlaco == 0)) {
+        	
+            // captura do arquivo e salva na struct
+            file.read((char*)&evento, sizeof(Log));
+            
+            // testa se a id do arquivo é igual a que foi inserida
+            if (evento.id == idExcluir) {
+                paraOlaco = 1;
+                
+            }
+            
+            // variavel que auxialiará na sobreposição
+            aux++;
+            
+        }		
+        
+        if (paraOlaco == 1) {
+        	
+            // define a id do registro para -1 = excluido
+            evento.id = -1;
+            
+            //Posiciona no registro a ser alterado
+            file.seekg(aux * tamReg());
+            
+            // escreve o mesmo registro mas agora com -1 na id
+            file.write((char*)&evento, sizeof(Log));            
+            
+            file.close();
+            
+            return 1;
+            
+        }
+		
+		else {
+			
+			cout << endl;
+            cout << "Ops, o registro não foi encontrado" << endl;
+            
+            return 0;
+            
+        }	
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+	
+	
+}
+
+// excluir registro a partir da ID
+int excluiTipo(){
+	
+	int tam, aux = -1, paraOlaco = 0;
+	char tipoExcluir[8];
+	
+	system("cls");
+	cout << endl << "\t" << ">>>> Excluir por TIPO <<<<" << "\t" << endl;
+	cout << endl;	
+	
+	cout << "[PERDA] = Perda de vídeo || [DETEC] Detecção de movimento" << endl;
+	cout << "Entre com o TIPO: ";
+	cin.ignore();
+	gets(tipoExcluir);
+	
+	// chama o arquivo
+	fstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
+	
+	if(file.is_open()){
+
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+
+        while ((file.tellg() < tam) && (paraOlaco == 0)) {
+        	
+            // captura do arquivo e salva na struct
+            file.read((char*)&evento, sizeof(Log));
+            
+            
+            if (strcmp(evento.tipo, tipoExcluir) == 0) {
+                paraOlaco = 1;               
+                                
+            }
+            
+            // variavel que auxialiará na sobreposição
+            aux++;
+            
+        }		
+        
+        if (paraOlaco == 1) {
+        	
+            // define a id do registro para -1 = excluido
+            evento.id = -1;
+            
+            //Posiciona no registro a ser alterado
+            file.seekg(aux * tamReg());
+            
+            // escreve o mesmo registro mas agora com -1 na id
+            file.write((char*)&evento, sizeof(Log));            
+            
+            file.close();
+            
+            return 1;
+            
+        }
+		
+		else {
+			
+			cout << endl;
+            cout << "Ops, o registro não foi encontrado" << endl;
+            
+            return 0;
+            
+        }	
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}	
+	
+}
+
+int alterarId(){
+	
+	int idAlterar, tam, aux = -1, paraOlaco = 0;
+
+	system("cls");
+	cout << endl << "\t" << ">>>> Alterar por ID <<<<" << "\t" << endl;
+	cout << endl;	
+	
+	cout << "Entre com a ID: ";
+	cin >> idAlterar;
+	
+	if(idAlterar == -1){
+		
+		return -1;
+		
+	}
+
+	// chama o arquivo
+	fstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
+	
+	if(file.is_open()){
+
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+
+        while ((file.tellg() < tam) && (paraOlaco == 0)) {
+        	
+            // captura do arquivo e salva na struct
+            file.read((char*)&evento, sizeof(Log));
+            
+            // testa se a id do arquivo é igual a que foi inserida
+            if (evento.id == idAlterar) {
+                paraOlaco = 1;
+                
+            }
+            
+            // variavel que auxialiará na sobreposição
+            aux++;
+            
+        }		
+        
+        if (paraOlaco == 1) {
+        	
+            evento = capturanovoDados();
+            
+            //Posiciona no registro a ser alterado
+            file.seekg(aux * tamReg());
+            
+            // escreve o mesmo registro mas agora com -1 na id
+            file.write((char*)&evento, sizeof(Log));            
+            
+            file.close();
+            
+            return 1;
+            
+        }
+		
+		else {
+			
+			cout << endl;
+            cout << "Ops, o registro não foi encontrado" << endl;
+            
+            return 0;
+            
+        }	
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+
+
+}
+
+int alterarTipo(){
+	
+	int tam, aux = -1, paraOlaco = 0;
+	char tipoAlterar[8];
+	
+	system("cls");
+	cout << endl << "\t" << ">>>> Alterar por TIPO <<<<" << "\t" << endl;
+	cout << endl;	
+	
+	cout << "[PERDA] = Perda de vídeo || [DETEC] Detecção de movimento" << endl;
+	cout << "Entre com o TIPO: ";
+	cin.ignore();
+	gets(tipoAlterar);
+	
+	// chama o arquivo
+	fstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
+	
+	if(file.is_open()){
+
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+
+        while ((file.tellg() < tam) && (paraOlaco == 0)) {
+        	
+            // captura do arquivo e salva na struct
+            file.read((char*)&evento, sizeof(Log));
+            
+            
+            if ((strcmp(evento.tipo, tipoAlterar) == 0) && (evento.id != -1))  {
+                paraOlaco = 1;               
+                                
+            }
+            
+            // variavel que auxialiará na sobreposição
+            aux++;
+            
+        }		
+        
+        if (paraOlaco == 1) {
+        	
+            evento = capturanovoDados();
+            
+            //Posiciona no registro a ser alterado
+            file.seekg(aux * tamReg());
+            
+            // escreve o mesmo registro mas agora com -1 na id
+            file.write((char*)&evento, sizeof(Log));            
+            
+            file.close();
+            
+            return 1;
+            
+        }
+		
+		else {
+			
+			cout << endl;
+            cout << "Ops, o registro não foi encontrado" << endl;
+            
+            return 0;
+            
+        }	
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+	
+}
+
+int consultaId(){
+
+	int idConsultar, tam, aux = -1, paraOlaco = 0;
+
+	system("cls");
+	cout << endl << "\t" << ">>>> Consultar por ID <<<<" << "\t" << endl;
+	cout << endl;	
+	
+	cout << "Entre com a ID: ";
+	cin >> idConsultar;
+	
+	if(idConsultar == -1){
+		
+		return -1;
+		
+	}
+
+	// chama o arquivo
+	fstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
+	
+	if(file.is_open()){
+
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+
+        while ((file.tellg() < tam) && (paraOlaco == 0)) {
+        	
+            // captura do arquivo e salva na struct
+            file.read((char*)&evento, sizeof(Log));
+            
+            // testa se a id do arquivo é igual a que foi inserida
+            if (evento.id == idConsultar) {
+                paraOlaco = 1;
+                
+            }
+            
+            // variavel que auxialiará na sobreposição
+            aux++;
+            
+        }		
+        
+        if (paraOlaco == 1) {        	
+                      
+            //Posiciona no registro a ser alterado
+            file.seekg(aux * tamReg());
+            
+            // pega um registro do arquivo
+            file.read((char*)&evento, sizeof(Log));
+            
+            // Mostra o registro em tela                
+            system("cls");
+			cout << endl << "\t" << ">>>> Registro correspondente a ID <<<<" << "\t" << endl;
+			cout << endl;
+			
+			// tabelação para exibir a lista
+			cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;
+            cout << evento.id << "\t" << evento.tipo << "\t" << evento.data << "\t" << evento.hora << endl;	
+                      
+            
+            file.close();
+            
+            return 1;
+            
+        }
+		
+		else {
+			
+			cout << endl;
+            cout << "Ops, o registro não foi encontrado" << endl;
+            
+            return 0;
+            
+        }	
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+
+
+
+}
+
+int consultaTipo(){
+	
+	int tam, aux = -1, paraOlaco = 0;
+	char tipoConsulta[8];
+	
+	system("cls");
+	cout << endl << "\t" << ">>>> Alterar por TIPO <<<<" << "\t" << endl;
+	cout << endl;	
+	
+	cout << "[PERDA] = Perda de vídeo || [DETEC] Detecção de movimento" << endl;
+	cout << "Entre com o TIPO: ";
+	cin.ignore();
+	gets(tipoConsulta);
+	
+	// chama o arquivo
+	fstream file;
+	
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo binário
+	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
+	
+	if(file.is_open()){
+
+		Log evento;
+		
+		// fim do arquivo
+		file.seekg(0, file.end);
+		
+		// pega o tamanho do arquivo
+		tam = file.tellg();
+		
+		// volta para o inicio do arquivo
+		file.seekg(0, file.beg);
+
+        while ((file.tellg() < tam) && (paraOlaco == 0)) {
+        	
+            // captura do arquivo e salva na struct
+            file.read((char*)&evento, sizeof(Log));
+            
+            
+            if ((strcmp(evento.tipo, tipoConsulta) == 0) && (evento.id != -1))  {
+                paraOlaco = 1;               
+                                
+            }
+            
+            // variavel que auxialiará na sobreposição
+            aux++;
+            
+        }		
+        
+        if (paraOlaco == 1) {
+        	
+            //Posiciona no registro a ser alterado
+            file.seekg(aux * tamReg());
+            
+            // pega um registro do arquivo
+            file.read((char*)&evento, sizeof(Log));
+            
+            // Mostra o registro em tela                
+            system("cls");
+			cout << endl << "\t" << ">>>> Registro correspondente ao TIPO <<<<" << "\t" << endl;
+			cout << endl;
+			
+			// tabelação para exibir a lista
+			cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;
+            cout << evento.id << "\t" << evento.tipo << "\t" << evento.data << "\t" << evento.hora << endl;	
+         	
+            
+            file.close();
+            
+            return 1;
+            
+        }
+		
+		else {
+			
+			cout << endl;
+            cout << "Ops, o registro não foi encontrado" << endl;
+            
+            return 0;
+            
+        }	
+		
+	}
+	
+	else {
+		
+		cout << "Ops, o arquivo não foi aberto" << endl;
+		
+		return 0;
+	}
+			
+}
+
+int main() {
+	
+	// pt-br
+	setlocale(LC_ALL, "Portuguese");
+
+	int opcao = 555;
+	
+	for(int i=0;;){
+	
+		system("cls");
+		cout << endl << "\t" << ">>>> Menu de opções <<<<" << "\t" << endl;
+		cout << endl;
+		cout << "1 - Incluir" << endl;
+		cout << "2 - Exluir lógico" << endl;
+		cout << "3 - Alterar" << endl;
+		cout << "4 - Consultar" << endl;
+		cout << "5 - Listar lógico" << endl;
+		cout << "6 - Listar físico" << endl;
+		cout << "7 - Propriedades" << endl;
+		cout << "99 - Sair" << endl;
+		cout << endl;
+		cout << "Digite a opcao desejada: ";
+		cin >> opcao;	
+		
+		// incluir
+		if(opcao == 1){
+			
+			// declara struct
+			Log evento; 
+			
+			// variavel usada para pegar o retorno da função
+			int opcao1;
+			
+			// chama função pra pegar dados
+			evento = capturaDados(); 
+			
+			// chama funcao para escrever no arquivo
+			opcao1 = escreveDados(evento);
+			
+			// testa o retorno para informar ao usuario se o registro foi feito
+			if(opcao1 == 1){
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Registro inserido com sucesso <<<<" << "\t" << endl;
+				cout << endl;
+				
+				// da opcao do usuario sair do laço for ou simplesmente voltar ao for
+				opcao1 = chamaMenu();
+				
+				// testa opção do usuario, se for 0 simplesmente imprime na tela pois o for criado é infinito
+				if(opcao1 == 0){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Retornando ao menu <<<<" << "\t" << endl;
+					cout << endl;
+								
+				}
+							
+				// se for 99 encerra o programa diretamente
+				else if(opcao1 == 99){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usuário <<<<" << "\t" << endl;
+					break;
+								
+				}
+							
+				// nesse ponto do programa, resolvemos encerrar caso o usuario digite algo fora do pedido
+				else {
+								
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
+					cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+					break;
+								
+				}
+
+			}
+			
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e também finaliza o programa
+			else {
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = falha ao inserir registro no arquivo" << endl << endl;;
+				break;
+				
+			}
+			
+			
+		}
+		// excluir
+		else if(opcao == 2){
+			
+			int opcao2;
+			
+			system("cls");
+			cout << endl << "\t" << ">>>> Excluir <<<<" << "\t" << endl;
+			cout << endl;
+			
+			cout << "[1] = Por ID || [2] Por TIPO" << endl << endl;
+			cout << "Informe o opção de exclusão: ";
+			cin >> opcao2;
+			
+			if(opcao2 == 1){
+				opcao2 = excluiId();
+			}
+			else if(opcao2 == 2){
+				opcao2 = excluiTipo();
+			}
+			else{
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+				break;
+				
+			}
+
+			if(opcao2 == 1){
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Registro apagado com sucesso <<<<" << "\t" << endl;
+				cout << endl;
+				
+				// da opcao do usuario sair do laço for ou simplesmente voltar ao for
+				opcao2 = chamaMenu();
+				
+				// testa opção do usuario, se for 0 simplesmente imprime na tela pois o for criado é infinito
+				if(opcao2 == 0){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Retornando ao menu <<<<" << "\t" << endl;
+					cout << endl;
+								
+				}
+							
+				// se for 99 encerra o programa diretamente
+				else if(opcao2 == 99){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usuário <<<<" << "\t" << endl;
+					break;
+								
+				}
+							
+				// nesse ponto do programa, resolvemos encerrar caso o usuario digite algo fora do pedido
+				else {
+								
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
+					cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+					break;
+								
+				}
+
+			}
+			
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e também finaliza o programa
+			else {
+								
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = falha ao apagar registro do arquivo" << endl << endl;;
+				break;
+				
+			}			
+
+		
+			
+		}
+		// alterar
+		else if(opcao == 3){
+			
+			int opcao3;
+			
+			system("cls");
+			cout << endl << "\t" << ">>>> Alterar <<<<" << "\t" << endl;
+			cout << endl;
+			
+			cout << "[1] = Por ID || [2] Por TIPO" << endl << endl;
+			cout << "Informe o opção de exclusão: ";
+			cin >> opcao3;
+			
+			if(opcao3 == 1){
+				opcao3 = alterarId();
+			}
+			else if(opcao3 == 2){
+				opcao3 = alterarTipo();
+			}
+			else{
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+				break;
+				
+			}
+
+			if(opcao3 == 1){
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Registro alterado com sucesso <<<<" << "\t" << endl;
+				cout << endl;
+				
+				// da opcao do usuario sair do laço for ou simplesmente voltar ao for
+				opcao3 = chamaMenu();
+				
+				// testa opção do usuario, se for 0 simplesmente imprime na tela pois o for criado é infinito
+				if(opcao3 == 0){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Retornando ao menu <<<<" << "\t" << endl;
+					cout << endl;
+								
+				}
+							
+				// se for 99 encerra o programa diretamente
+				else if(opcao3 == 99){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usuário <<<<" << "\t" << endl;
+					break;
+								
+				}
+							
+				// nesse ponto do programa, resolvemos encerrar caso o usuario digite algo fora do pedido
+				else {
+								
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
+					cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+					break;
+								
+				}
+
+			}
+			
+			else if(opcao3 == -1){
+				
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = não é possível alterar um registro excluído" << endl << endl;;
+				break;
+			
+			}
+			
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e também finaliza o programa
+			else {
+								
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = falha ao alterar registro do arquivo" << endl << endl;;
+				break;
+				
+			}
+			
+		}
+		// consultar
+		else if(opcao == 4){
+
+			int opcao4;
+			
+			system("cls");
+			cout << endl << "\t" << ">>>> Consultar <<<<" << "\t" << endl;
+			cout << endl;
+			
+			cout << "[1] = Por ID || [2] Por TIPO" << endl << endl;
+			cout << "Informe o opção de consulta: ";
+			cin >> opcao4;
+			
+			if(opcao4 == 1){
+				opcao4 = consultaId();
+			}
+			else if(opcao4 == 2){
+				opcao4 = consultaTipo();
+			}
+			else{
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+				break;
+				
+			}
+
+			if(opcao4 == 1){				
+				
+				cout << endl << "\t" << ">>>> Consulta realizada com sucesso <<<<" << "\t" << endl;
+				cout << endl;
+				
+				// da opcao do usuario sair do laço for ou simplesmente voltar ao for
+				opcao4 = chamaMenu();
+				
+				// testa opção do usuario, se for 0 simplesmente imprime na tela pois o for criado é infinito
+				if(opcao4 == 0){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Retornando ao menu <<<<" << "\t" << endl;
+					cout << endl;
+								
+				}
+							
+				// se for 99 encerra o programa diretamente
+				else if(opcao4 == 99){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usuário <<<<" << "\t" << endl;
+					break;
+								
+				}
+							
+				// nesse ponto do programa, resolvemos encerrar caso o usuario digite algo fora do pedido
+				else {
+								
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
+					cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+					break;
+								
+				}
+
+			}
+			
+			else if(opcao4 == -1){
+				
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = não é possível consultar um registro excluído" << endl << endl;;
+				break;
+			
+			}
+			
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e também finaliza o programa
+			else {
+								
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = falha ao consultar registro do arquivo" << endl << endl;;
+				break;
+				
+			}			
+			
+			
+		}
+		// listar lógico
+		else if(opcao == 5){
+			
+			int opcao5;
+			
+			system("cls");
+			cout << endl << "\t" << ">>>> Listar lógico <<<<" << "\t" << endl;
+			cout << endl;
+			
+			opcao5 = listarLogico();
+			
+			
+			// testa o retorno 
+			if(opcao5 == 1){				
+				
+				cout << endl << endl << "\t" << ">>>> Listagem lógica feita com sucesso <<<<" << "\t" << endl;
+				cout << endl;
+				
+				// da opcao do usuario sair do laço for ou simplesmente voltar ao for
+				opcao5 = chamaMenu();
+				
+				// testa opção do usuario, se for 0 simplesmente imprime na tela pois o for criado é infinito
+				if(opcao5 == 0){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Retornando ao menu <<<<" << "\t" << endl;
+					cout << endl;
+								
+				}
+							
+				// se for 99 encerra o programa diretamente
+				else if(opcao5 == 99){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usuário <<<<" << "\t" << endl;
+					break;
+								
+				}
+							
+				// nesse ponto do programa, resolvemos encerrar caso o usuario digite algo fora do pedido
+				else {
+								
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
+					cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+					break;
+								
+				}
+
+			}
+			
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e também finaliza o programa
+			else {
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = falha ao listar registros do arquivo" << endl << endl;;
+				break;
+				
+			}
+			
+		}
+		// listar físico
+		else if(opcao == 6){
+			
+			int opcao6;
+			
+			system("cls");
+			cout << endl << "\t" << ">>>> Listar físico <<<<" << "\t" << endl;
+			cout << endl;
+			
+			opcao6 = listarFisico();
+			
+			
+			// testa o retorno 
+			if(opcao6 == 1){				
+				
+				cout << endl << endl << "\t" << ">>>> Listagem física feita com sucesso <<<<" << "\t" << endl;
+				cout << endl;
+				
+				// da opcao do usuario sair do laço for ou simplesmente voltar ao for
+				opcao6 = chamaMenu();
+				
+				// testa opção do usuario, se for 0 simplesmente imprime na tela pois o for criado é infinito
+				if(opcao6 == 0){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Retornando ao menu <<<<" << "\t" << endl;
+					cout << endl;
+								
+				}
+							
+				// se for 99 encerra o programa diretamente
+				else if(opcao6 == 99){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usuário <<<<" << "\t" << endl;
+					break;
+								
+				}
+							
+				// nesse ponto do programa, resolvemos encerrar caso o usuario digite algo fora do pedido
+				else {
+								
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
+					cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+					break;
+								
+				}
+
+			}
+			
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e também finaliza o programa
+			else {
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = falha ao listar registros do arquivo" << endl << endl;;
+				break;
+				
+			}
+			
+			
+		}
+		// propriedades
+		else if(opcao == 7){
+			
+			int opcao7;
+			
+			system("cls");
+			cout << endl << "\t" << ">>>> Propriedades <<<<" << "\t" << endl;
+			cout << endl;
+			
+			opcao7 = retornaProp();
+			
+			// testa retorno
+			if(opcao7 == 1){
+				
+				cout << endl << endl << "\t" << ">>>> Propriedades retornadas com sucesso <<<<" << "\t" << endl;
+				cout << endl;
+				
+				// da opcao do usuario sair do laço for ou simplesmente voltar ao for
+				opcao7 = chamaMenu();
+				
+				// testa opção do usuario, se for 0 simplesmente imprime na tela pois o for criado é infinito
+				if(opcao7 == 0){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Retornando ao menu <<<<" << "\t" << endl;
+					cout << endl;
+								
+				}
+							
+				// se for 99 encerra o programa diretamente
+				else if(opcao7 == 99){
+							
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usuário <<<<" << "\t" << endl;
+					break;
+								
+				}
+							
+				// nesse ponto do programa, resolvemos encerrar caso o usuario digite algo fora do pedido
+				else {
+								
+					system("cls");
+					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
+					cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+					break;
+								
+				}
+							
+			}
+			
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e também finaliza o programa
+			else {
+				
+				system("cls");
+				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
+				cout << "ERRO = falha ao retornar as propriedades" << endl << endl;;
+				break;
+				
+			}
+			
+			
+		}
+		// sair
+		else if(opcao == 99){
+			
+			system("cls");
+			cout << "PROGRAMA FINALIZADO PELO USUÁRIO" << endl << endl;
+			break;
+			
+		}
+		// opção inválida
+		else{
+			
+			system("cls");
+			cout << "PROGRAMA INTERROMPIDO POR ERRO" << endl << endl;
+			cout << "ERRO = é necessário digitar uma opção válida" << endl << endl;;
+			break;	
+					
+		}
+
+	}
+
+
+return EXIT_SUCCESS;
+
+}
