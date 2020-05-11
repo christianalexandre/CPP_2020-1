@@ -107,5 +107,6 @@
 
 ## v9
 <ul>
-  <li>Adicionado alteração de registros apenas quando a ID não existe, para evitar que o campo chave seja duplicado</li>  
+  <li><bold>Adicionado alteração de registros apenas quando a ID não existe, para evitar que o campo chave seja duplicado</bold></li>
+  <li><b>removido</b></li>
 </ul>
