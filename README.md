@@ -58,6 +58,11 @@
   <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Lista_fisico.png?raw=true">  
 </ul>
 
+<ul>
+  <li>
+    <a href="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/file/log.dat?raw=true">Arquivo com 15 registros</a>
+  </li>
+</ul>
 ## v1
 <ul>
   <li>Menu principal</li>
