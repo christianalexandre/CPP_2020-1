@@ -16,7 +16,47 @@
 </ul>
 
 ## Demonstração
+<ul>
+  <li>Menu</li>
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Menu_princpal.png?raw=true">
+</ul>
 
+<ul>
+  <li>Inclusão</li>
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Incluir_1.png?raw=true">
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Inclui_2.png?raw=true">
+</ul>
+
+<ul>
+  <li>Exclusão</li>
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Excluir_1.png?raw=true">
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Excluir_2.png?raw=true">
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Excluir_3.png?raw=true">
+</ul>
+
+<ul>
+  <li>Alteração</li>
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Alterar_1.png">
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Alterar_2.png">
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Alterar_3.png">
+</ul>
+
+<ul>
+  <li>Consultar</li>
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Consultar_1.png">
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Consultar_2.png">
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Consultar_3.png">
+</ul>
+
+<ul>
+  <li>Listagem lógica</li>
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Listar_logico.png?raw=true">  
+</ul>
+
+<ul>
+  <li>Listagem física</li>
+  <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Lista_fisico.png?raw=true">  
+</ul>
 
 ## v1
 <ul>
