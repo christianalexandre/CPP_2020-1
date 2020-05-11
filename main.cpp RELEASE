@@ -12,7 +12,7 @@ struct Log {
 	int id; // valor chave
 	char data[10]; // xx/xx/xx
 	char hora[6]; // xx:xx
-	char tipo[8]; // PERDA para perda de vÌdeo e DETEC para detecÁ„o de movimento
+	char tipo[8]; // PERDA para perda de v√≠deo e DETEC para detec√ß√£o de movimento
 	
 }; // 28 bytes 
 
@@ -22,10 +22,10 @@ const string ARQ = "log.dat";
 
 /*
 
-	Essa funÁ„o È utilizada para checar se o ID j· existe no arquivo ou È menor que 0
+	Essa fun√ß√£o √© utilizada para checar se o ID j√° existe no arquivo ou √© menor que 0
 	Retorna -1 caso seja menor que 0
 	Retorna 1 caso ela encontra a id no arquivo
-	Retorna 0 caso ela n„o encontre a id no arquivo
+	Retorna 0 caso ela n√£o encontre a id no arquivo
 
 */
 int verificaId(int id){
@@ -41,7 +41,7 @@ int verificaId(int id){
 	// chama o arquivo
 	fstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
 	
 	if(file.is_open()){
@@ -62,13 +62,13 @@ int verificaId(int id){
             // captura do arquivo e salva na struct
             file.read((char*)&evento, sizeof(Log));
             
-            // testa se a id do arquivo È igual a que foi inserida
+            // testa se a id do arquivo √© igual a que foi inserida
             if (evento.id == id) {
                 paraOlaco = 1;
                 
             }
             
-            // variavel que auxialiar· na sobreposiÁ„o
+            // variavel que auxialiar√° na sobreposi√ß√£o
             aux++;
             
         }		
@@ -90,7 +90,7 @@ int verificaId(int id){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -118,7 +118,7 @@ Log capturaDados(){
 	
 	cin.ignore();
 		
-	cout << endl << endl << "[PERDA] = Perda de vÌdeo || [DETEC] DetecÁ„o de movimento" << endl;
+	cout << endl << endl << "[PERDA] = Perda de v√≠deo || [DETEC] Detec√ß√£o de movimento" << endl;
 	cout << "Informe o tipo de evento: ";
 	gets(evento.tipo);		
 	
@@ -156,7 +156,7 @@ Log capturanovoDados(){
 	
 	cin.ignore();
 		
-	cout << endl << endl << "[PERDA] = Perda de vÌdeo || [DETEC] DetecÁ„o de movimento" << endl;
+	cout << endl << endl << "[PERDA] = Perda de v√≠deo || [DETEC] Detec√ß√£o de movimento" << endl;
 	cout << "Informe o novo tipo de evento: ";
 	gets(evento.tipo);		
 	
@@ -174,8 +174,8 @@ Log capturanovoDados(){
 
 /*
 
-	ApÛs todas as interaÁıes da main(), o usuario tem a opÁ„o de sair ou voltar ao menu
-	Essa funÁ„o pega o dado do usuario e devolve o valor para ser tratado
+	Ap√≥s todas as intera√ß√µes da main(), o usuario tem a op√ß√£o de sair ou voltar ao menu
+	Essa fun√ß√£o pega o dado do usuario e devolve o valor para ser tratado
 
 */
 int chamaMenu(){
@@ -194,8 +194,8 @@ int chamaMenu(){
 
 /*
 
-	ApÛs salvar as informaÁıes na struct e confirmar que a ID n„o est· duplicada, essa funÁ„o È chamada
-	Recebendo a prÛpria struct como parametro, ela simpleste adiciona ao final do arquivo
+	Ap√≥s salvar as informa√ß√µes na struct e confirmar que a ID n√£o est√° duplicada, essa fun√ß√£o √© chamada
+	Recebendo a pr√≥pria struct como parametro, ela simpleste adiciona ao final do arquivo
 	Retorna 1 se sucesso
 	Retorna 0 se sem sucesso
 
@@ -205,7 +205,7 @@ int escreveDados(Log evento){
 	// saida para o arquivo 
 	ofstream file;
 	
-	// abre o arquivo log.dat para saida de dados, do tipo bin·rio e para inserÁ„o ao final
+	// abre o arquivo log.dat para saida de dados, do tipo bin√°rio e para inser√ß√£o ao final
 	file.open(ARQ.c_str(), ios::out | ios::binary | ios::app);
 	
 	// se arquivo estiver aberto, escreve os dados da struct no arquivo e fecha
@@ -221,7 +221,7 @@ int escreveDados(Log evento){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -241,7 +241,7 @@ int listarLogico(){
 	// entrada para a programa
 	ifstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::binary);
 	
 	// se arquivo estiver aberto, escreve os dados da struct no arquivo e fecha
@@ -261,7 +261,7 @@ int listarLogico(){
 		// volta para o inicio do arquivo
 		file.seekg(0, file.beg);
 		
-		// tabelaÁ„o para exibir a lista
+		// tabela√ß√£o para exibir a lista
 		cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;	
 		
 		while(file.tellg() < tam){
@@ -285,7 +285,7 @@ int listarLogico(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -307,7 +307,7 @@ int listarFisico(){
 	// entrada para a programa
 	ifstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::binary);
 	
 	// se arquivo estiver aberto, escreve os dados da struct no arquivo e fecha
@@ -327,7 +327,7 @@ int listarFisico(){
 		// volta para o inicio do arquivo
 		file.seekg(0, file.beg);
 		
-		// tabelaÁ„o para exibir a lista
+		// tabela√ß√£o para exibir a lista
 		cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;	
 		
 		while(file.tellg() < tam){
@@ -348,7 +348,7 @@ int listarFisico(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -359,7 +359,7 @@ int listarFisico(){
 /*
 
 	Conta a quantidade de registros com ID diferente de -1
-	Retorna i que È a quantidade de linhas com id diferente de -1
+	Retorna i que √© a quantidade de linhas com id diferente de -1
 	Retorna 0 se sem sucesso
 	
 */
@@ -368,7 +368,7 @@ int qtdeReg(){
 	// entrada para a programa
 	ifstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::binary);
 	
 	// se arquivo estiver aberto, calculo a qtde e fecha
@@ -407,7 +407,7 @@ int qtdeReg(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}	
@@ -416,7 +416,7 @@ int qtdeReg(){
 
 /*
 
-	Utilizado apenas na funÁ„o retornaProp para que retorne o tamanho do arquivo 
+	Utilizado apenas na fun√ß√£o retornaProp para que retorne o tamanho do arquivo 
 
 */
 int tamReg(){
@@ -442,7 +442,7 @@ int retornaProp(){
 	// entrada para a programa
 	ifstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::binary);
 	
 	// se arquivo estiver aberto, calculo o tamanho e fecha
@@ -489,7 +489,7 @@ int retornaProp(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -498,7 +498,7 @@ int retornaProp(){
 
 /*
 
-	Exclus„o de um registro a partir de um ID, essa exclus„o È lÛgica ent„o a ID do registro ser· marcada como -1
+	Exclus√£o de um registro a partir de um ID, essa exclus√£o √© l√≥gica ent√£o a ID do registro ser√° marcada como -1
 	Retorna 1 se sucesso
 	Retorna 0 se sem sucesso
 
@@ -517,7 +517,7 @@ int excluiId(){
 	// chama o arquivo
 	fstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
 	
 	if(file.is_open()){
@@ -538,13 +538,13 @@ int excluiId(){
             // captura do arquivo e salva na struct
             file.read((char*)&evento, sizeof(Log));
             
-            // testa se a id do arquivo È igual a que foi inserida
+            // testa se a id do arquivo √© igual a que foi inserida
             if (evento.id == idExcluir) {
                 paraOlaco = 1;
                 
             }
             
-            // variavel que auxialiar· na sobreposiÁ„o
+            // variavel que auxialiar√° na sobreposi√ß√£o
             aux++;
             
         }		
@@ -569,7 +569,7 @@ int excluiId(){
 		else {
 			
 			cout << endl;
-            cout << "Ops, o registro n„o foi encontrado" << endl;
+            cout << "Ops, o registro n√£o foi encontrado" << endl;
             
             return 0;
             
@@ -579,7 +579,7 @@ int excluiId(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -589,13 +589,13 @@ int excluiId(){
 
 /*
 
-	Exclus„o de registro a partir do TIPO, essa funÁ„o procura a primeira apariÁ„o do TIPO que n„o esteja deletado e marca como -1 a ID para exclus„o lÛgica
+	Exclus√£o de registro a partir do TIPO, essa fun√ß√£o procura a primeira apari√ß√£o do TIPO que n√£o esteja deletado e marca como -1 a ID para exclus√£o l√≥gica
 	
 	Exemplo:
 	
 		ID 	TIPO 
-		-1	PERDA <~~ n„o muda pois j· tem -1 na ID
-		10	PERDA <~~ primeira apariÁ„o do TIPO com a ID diferente de -1, ent„o deleta logicamente
+		-1	PERDA <~~ n√£o muda pois j√° tem -1 na ID
+		10	PERDA <~~ primeira apari√ß√£o do TIPO com a ID diferente de -1, ent√£o deleta logicamente
 		
 	Retorna 1 se sucesso
 	Retorna 0 se sem sucesso						
@@ -610,7 +610,7 @@ int excluiTipo(){
 	cout << endl << "\t" << ">>>> Excluir por TIPO <<<<" << "\t" << endl;
 	cout << endl;	
 	
-	cout << "[PERDA] = Perda de vÌdeo || [DETEC] DetecÁ„o de movimento" << endl;
+	cout << "[PERDA] = Perda de v√≠deo || [DETEC] Detec√ß√£o de movimento" << endl;
 	cout << "Entre com o TIPO: ";
 	cin.ignore();
 	gets(tipoExcluir);
@@ -618,7 +618,7 @@ int excluiTipo(){
 	// chama o arquivo
 	fstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
 	
 	if(file.is_open()){
@@ -645,7 +645,7 @@ int excluiTipo(){
                                 
             }
             
-            // variavel que auxialiar· na sobreposiÁ„o
+            // variavel que auxialiar√° na sobreposi√ß√£o
             aux++;
             
         }		
@@ -670,7 +670,7 @@ int excluiTipo(){
 		else {
 			
 			cout << endl;
-            cout << "Ops, o registro n„o foi encontrado" << endl;
+            cout << "Ops, o registro n√£o foi encontrado" << endl;
             
             return 0;
             
@@ -680,7 +680,7 @@ int excluiTipo(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}	
@@ -690,7 +690,7 @@ int excluiTipo(){
 
 /*
 
-	AlteraÁ„o de registro a partir da ID, antes de fazer a alteraÁ„o com os novos dados inseridos pelo usuario testa se a ID j· existe e se existir n„o far· alteraÁ„o
+	Altera√ß√£o de registro a partir da ID, antes de fazer a altera√ß√£o com os novos dados inseridos pelo usuario testa se a ID j√° existe e se existir n√£o far√° altera√ß√£o
 	Retorna 1 se sucesso
 	Retorna 0 se sem sucesso
 
@@ -715,7 +715,7 @@ int alterarId(){
 	// chama o arquivo
 	fstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
 	
 	if(file.is_open()){
@@ -736,27 +736,27 @@ int alterarId(){
             // captura do arquivo e salva na struct
             file.read((char*)&evento, sizeof(Log));
             
-            // testa se a id do arquivo È igual a que foi inserida
+            // testa se a id do arquivo √© igual a que foi inserida
             if (evento.id == idAlterar) {
                 paraOlaco = 1;
                 
             }
             
-            // variavel que auxialiar· na sobreposiÁ„o
+            // variavel que auxialiar√° na sobreposi√ß√£o
             aux++;
             
         }		
         
         if (paraOlaco == 1) {
         	
-        	// variavel p pegar o retorno da funÁ„o
+        	// variavel p pegar o retorno da fun√ß√£o
         	int chamaverificaId;
         	
-        	// chama funÁ„o para pegar dados e armanezar na variavel
+        	// chama fun√ß√£o para pegar dados e armanezar na variavel
             evento = capturanovoDados();
             
             /*
-            // chama a funÁ„o e salva na variavel para tratarmos as saidas
+            // chama a fun√ß√£o e salva na variavel para tratarmos as saidas
             chamaverificaId = verificaId(evento.id);            
             
 			if(chamaverificaId == -1){
@@ -786,7 +786,7 @@ int alterarId(){
 		else {
 			
 			cout << endl;
-            cout << "Ops, o registro n„o foi encontrado" << endl;
+            cout << "Ops, o registro n√£o foi encontrado" << endl;
             
             return 0;
             
@@ -796,7 +796,7 @@ int alterarId(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -807,7 +807,7 @@ int alterarId(){
 
 /*
 
-	AlteraÁ„o de registro a partir do TIPO, antes de fazer a alteraÁ„o com os novos dados inseridos pelo usuario testa se a ID j· existe e se existir n„o far· alteraÁ„o
+	Altera√ß√£o de registro a partir do TIPO, antes de fazer a altera√ß√£o com os novos dados inseridos pelo usuario testa se a ID j√° existe e se existir n√£o far√° altera√ß√£o
 	Retorna 1 se sucesso
 	Retorna 0 se sem sucesso
 
@@ -821,7 +821,7 @@ int alterarTipo(){
 	cout << endl << "\t" << ">>>> Alterar por TIPO <<<<" << "\t" << endl;
 	cout << endl;	
 	
-	cout << "[PERDA] = Perda de vÌdeo || [DETEC] DetecÁ„o de movimento" << endl;
+	cout << "[PERDA] = Perda de v√≠deo || [DETEC] Detec√ß√£o de movimento" << endl;
 	cout << "Entre com o TIPO: ";
 	cin.ignore();
 	gets(tipoAlterar);
@@ -829,7 +829,7 @@ int alterarTipo(){
 	// chama o arquivo
 	fstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
 	
 	if(file.is_open()){
@@ -856,21 +856,21 @@ int alterarTipo(){
                                 
             }
             
-            // variavel que auxialiar· na sobreposiÁ„o
+            // variavel que auxialiar√° na sobreposi√ß√£o
             aux++;
             
         }		
         
         if (paraOlaco == 1) {
         	
-            // variavel p pegar o retorno da funÁ„o
+            // variavel p pegar o retorno da fun√ß√£o
         	int chamaverificaId;
         	
-        	// chama funÁ„o para pegar dados e armanezar na variavel
+        	// chama fun√ß√£o para pegar dados e armanezar na variavel
             evento = capturanovoDados();
             
         	/*
-            // chama a funÁ„o e salva na variavel para tratarmos as saidas
+            // chama a fun√ß√£o e salva na variavel para tratarmos as saidas
             chamaverificaId = verificaId(evento.id);            
             
 			if(chamaverificaId == -1){
@@ -900,7 +900,7 @@ int alterarTipo(){
 		else {
 			
 			cout << endl;
-            cout << "Ops, o registro n„o foi encontrado" << endl;
+            cout << "Ops, o registro n√£o foi encontrado" << endl;
             
             return 0;
             
@@ -910,7 +910,7 @@ int alterarTipo(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -944,7 +944,7 @@ int consultaId(){
 	// chama o arquivo
 	fstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
 	
 	if(file.is_open()){
@@ -965,13 +965,13 @@ int consultaId(){
             // captura do arquivo e salva na struct
             file.read((char*)&evento, sizeof(Log));
             
-            // testa se a id do arquivo È igual a que foi inserida
+            // testa se a id do arquivo √© igual a que foi inserida
             if (evento.id == idConsultar) {
                 paraOlaco = 1;
                 
             }
             
-            // variavel que auxialiar· na sobreposiÁ„o
+            // variavel que auxialiar√° na sobreposi√ß√£o
             aux++;
             
         }		
@@ -989,7 +989,7 @@ int consultaId(){
 			cout << endl << "\t" << ">>>> Registro correspondente a ID <<<<" << "\t" << endl;
 			cout << endl;
 			
-			// tabelaÁ„o para exibir a lista
+			// tabela√ß√£o para exibir a lista
 			cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;
             cout << evento.id << "\t" << evento.tipo << "\t" << evento.data << "\t" << evento.hora << endl;	
                       
@@ -1003,7 +1003,7 @@ int consultaId(){
 		else {
 			
 			cout << endl;
-            cout << "Ops, o registro n„o foi encontrado" << endl;
+            cout << "Ops, o registro n√£o foi encontrado" << endl;
             
             return 0;
             
@@ -1013,7 +1013,7 @@ int consultaId(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -1036,7 +1036,7 @@ int consultaTipo(){
 	cout << endl << "\t" << ">>>> Alterar por TIPO <<<<" << "\t" << endl;
 	cout << endl;	
 	
-	cout << "[PERDA] = Perda de vÌdeo || [DETEC] DetecÁ„o de movimento" << endl;
+	cout << "[PERDA] = Perda de v√≠deo || [DETEC] Detec√ß√£o de movimento" << endl;
 	cout << "Entre com o TIPO: ";
 	cin.ignore();
 	gets(tipoConsulta);
@@ -1044,7 +1044,7 @@ int consultaTipo(){
 	// chama o arquivo
 	fstream file;
 	
-	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin·rio
+	// abre o arquivo log.dat para entrada de dados no programa e saida de dados para o arquivo do tipo bin√°rio
 	file.open(ARQ.c_str(), ios::in | ios::out  | ios::binary);
 	
 	if(file.is_open()){
@@ -1071,7 +1071,7 @@ int consultaTipo(){
                                 
             }
             
-            // variavel que auxialiar· na sobreposiÁ„o
+            // variavel que auxialiar√° na sobreposi√ß√£o
             aux++;
             
         }		
@@ -1089,7 +1089,7 @@ int consultaTipo(){
 			cout << endl << "\t" << ">>>> Registro correspondente ao TIPO <<<<" << "\t" << endl;
 			cout << endl;
 			
-			// tabelaÁ„o para exibir a lista
+			// tabela√ß√£o para exibir a lista
 			cout << "ID" << "\t" << "TIPO" << "\t" << "DATA" << "\t\t" << "HORA" << endl;
             cout << evento.id << "\t" << evento.tipo << "\t" << evento.data << "\t" << evento.hora << endl;	
          	
@@ -1103,7 +1103,7 @@ int consultaTipo(){
 		else {
 			
 			cout << endl;
-            cout << "Ops, o registro n„o foi encontrado" << endl;
+            cout << "Ops, o registro n√£o foi encontrado" << endl;
             
             return 0;
             
@@ -1113,7 +1113,7 @@ int consultaTipo(){
 	
 	else {
 		
-		cout << "Ops, o arquivo n„o foi aberto" << endl;
+		cout << "Ops, o arquivo n√£o foi aberto" << endl;
 		
 		return 0;
 	}
@@ -1123,8 +1123,8 @@ int consultaTipo(){
 
 /*
 
-	O menu principal foi desenvolvido com o um for infinito para que consigamos voltar com praticidade para o menu sem ter que chamar uma funÁ„o para isso
-	Para sair do programa podemos utilizar um break pois saimos do laÁo atual (for) e caimos no return EXIT_SUCCES
+	O menu principal foi desenvolvido com o um for infinito para que consigamos voltar com praticidade para o menu sem ter que chamar uma fun√ß√£o para isso
+	Para sair do programa podemos utilizar um break pois saimos do la√ßo atual (for) e caimos no return EXIT_SUCCES
 
 */
 int main() {
@@ -1137,14 +1137,14 @@ int main() {
 	for(int i=0;;){
 	
 		system("cls");
-		cout << endl << "\t" << ">>>> Menu de opÁıes <<<<" << "\t" << endl;
+		cout << endl << "\t" << ">>>> Menu de op√ß√µes <<<<" << "\t" << endl;
 		cout << endl;
 		cout << "1 - Incluir" << endl;
-		cout << "2 - Exluir lÛgico" << endl;
+		cout << "2 - Exluir l√≥gico" << endl;
 		cout << "3 - Alterar" << endl;
 		cout << "4 - Consultar" << endl;
-		cout << "5 - Listar lÛgico" << endl;
-		cout << "6 - Listar fÌsico" << endl;
+		cout << "5 - Listar l√≥gico" << endl;
+		cout << "6 - Listar f√≠sico" << endl;
 		cout << "7 - Propriedades" << endl;
 		cout << "99 - Sair" << endl;
 		cout << endl;
@@ -1157,11 +1157,11 @@ int main() {
 			// declara struct
 			Log evento; 
 			
-			// variavel usada para pegar o retorno da funÁ„o
+			// variavel usada para pegar o retorno da fun√ß√£o
 			int opcao1, chamaverificaId;
 			
 					
-			// chama funÁ„o pra pegar dados
+			// chama fun√ß√£o pra pegar dados
 			evento = capturaDados(); 			
 			
 			chamaverificaId = verificaId(evento.id);
@@ -1170,7 +1170,7 @@ int main() {
 				
 				system("cls");
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-				cout << "ERRO = a ID informada j· existe no arquivo" << endl << endl;;
+				cout << "ERRO = a ID informada j√° existe no arquivo" << endl << endl;;
 				break;
 				
 			}
@@ -1179,7 +1179,7 @@ int main() {
 				
 				system("cls");
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-				cout << "ERRO = n„o È possÌvel adicionar uma ID menor que zero" << endl << endl;;
+				cout << "ERRO = n√£o √© poss√≠vel adicionar uma ID menor que zero" << endl << endl;;
 				break;
 				
 			}				
@@ -1194,10 +1194,10 @@ int main() {
 				cout << endl << "\t" << ">>>> Registro inserido com sucesso <<<<" << "\t" << endl;
 				cout << endl;
 				
-				// da opcao do usuario sair do laÁo for ou simplesmente voltar ao for
+				// da opcao do usuario sair do la√ßo for ou simplesmente voltar ao for
 				opcao1 = chamaMenu();
 				
-				// testa opÁ„o do usuario, se for 0 simplesmente imprime na tela pois o for criado È infinito
+				// testa op√ß√£o do usuario, se for 0 simplesmente imprime na tela pois o for criado √© infinito
 				if(opcao1 == 0){
 							
 					system("cls");
@@ -1210,7 +1210,7 @@ int main() {
 				else if(opcao1 == 99){
 							
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					break;
 								
 				}
@@ -1220,14 +1220,14 @@ int main() {
 								
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					break;
 								
 				}
 
 			}
 			
-			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tambÈm finaliza o programa
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tamb√©m finaliza o programa
 			else {
 				
 				system("cls");
@@ -1249,7 +1249,7 @@ int main() {
 			cout << endl;
 			
 			cout << "[1] = Por ID || [2] Por TIPO" << endl << endl;
-			cout << "Informe o opÁ„o de exclus„o: ";
+			cout << "Informe o op√ß√£o de exclus√£o: ";
 			cin >> opcao2;
 			
 			if(opcao2 == 1){
@@ -1262,7 +1262,7 @@ int main() {
 				
 				system("cls");
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
-				cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+				cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 				break;
 				
 			}
@@ -1273,10 +1273,10 @@ int main() {
 				cout << endl << "\t" << ">>>> Registro apagado com sucesso <<<<" << "\t" << endl;
 				cout << endl;
 				
-				// da opcao do usuario sair do laÁo for ou simplesmente voltar ao for
+				// da opcao do usuario sair do la√ßo for ou simplesmente voltar ao for
 				opcao2 = chamaMenu();
 				
-				// testa opÁ„o do usuario, se for 0 simplesmente imprime na tela pois o for criado È infinito
+				// testa op√ß√£o do usuario, se for 0 simplesmente imprime na tela pois o for criado √© infinito
 				if(opcao2 == 0){
 							
 					system("cls");
@@ -1289,7 +1289,7 @@ int main() {
 				else if(opcao2 == 99){
 							
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					break;
 								
 				}
@@ -1299,14 +1299,14 @@ int main() {
 								
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					break;
 								
 				}
 
 			}
 			
-			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tambÈm finaliza o programa
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tamb√©m finaliza o programa
 			else {
 								
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
@@ -1328,7 +1328,7 @@ int main() {
 			cout << endl;
 			
 			cout << "[1] = Por ID || [2] Por TIPO" << endl << endl;
-			cout << "Informe o opÁ„o de exclus„o: ";
+			cout << "Informe o op√ß√£o de exclus√£o: ";
 			cin >> opcao3;
 			
 			if(opcao3 == 1){
@@ -1338,7 +1338,7 @@ int main() {
 					
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = n„o È possÌvel adicionar uma ID menor que zero" << endl << endl;;
+					cout << "ERRO = n√£o √© poss√≠vel adicionar uma ID menor que zero" << endl << endl;;
 					break;
 					
 				}
@@ -1346,7 +1346,7 @@ int main() {
 					
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = a ID informada j· existe no arquivo" << endl << endl;;
+					cout << "ERRO = a ID informada j√° existe no arquivo" << endl << endl;;
 					break;
 					
 				}
@@ -1359,7 +1359,7 @@ int main() {
 					
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = n„o È possÌvel adicionar uma ID menor que zero" << endl << endl;;
+					cout << "ERRO = n√£o √© poss√≠vel adicionar uma ID menor que zero" << endl << endl;;
 					break;
 					
 				}
@@ -1367,7 +1367,7 @@ int main() {
 					
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = a ID informada j· existe no arquivo" << endl << endl;;
+					cout << "ERRO = a ID informada j√° existe no arquivo" << endl << endl;;
 					break;
 					
 				}
@@ -1377,7 +1377,7 @@ int main() {
 				
 				system("cls");
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
-				cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+				cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 				break;
 				
 			}
@@ -1388,10 +1388,10 @@ int main() {
 				cout << endl << "\t" << ">>>> Registro alterado com sucesso <<<<" << "\t" << endl;
 				cout << endl;
 				
-				// da opcao do usuario sair do laÁo for ou simplesmente voltar ao for
+				// da opcao do usuario sair do la√ßo for ou simplesmente voltar ao for
 				opcao3 = chamaMenu();
 				
-				// testa opÁ„o do usuario, se for 0 simplesmente imprime na tela pois o for criado È infinito
+				// testa op√ß√£o do usuario, se for 0 simplesmente imprime na tela pois o for criado √© infinito
 				if(opcao3 == 0){
 							
 					system("cls");
@@ -1404,7 +1404,7 @@ int main() {
 				else if(opcao3 == 99){
 							
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					break;
 								
 				}
@@ -1414,7 +1414,7 @@ int main() {
 								
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					break;
 								
 				}
@@ -1424,12 +1424,12 @@ int main() {
 			else if(opcao3 == -1){
 				
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
-				cout << "ERRO = n„o È possÌvel alterar um registro excluÌdo" << endl << endl;;
+				cout << "ERRO = n√£o √© poss√≠vel alterar um registro exclu√≠do" << endl << endl;;
 				break;
 			
 			}
 			
-			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tambÈm finaliza o programa
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tamb√©m finaliza o programa
 			else {
 								
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
@@ -1449,7 +1449,7 @@ int main() {
 			cout << endl;
 			
 			cout << "[1] = Por ID || [2] Por TIPO" << endl << endl;
-			cout << "Informe o opÁ„o de consulta: ";
+			cout << "Informe o op√ß√£o de consulta: ";
 			cin >> opcao4;
 			
 			if(opcao4 == 1){
@@ -1462,7 +1462,7 @@ int main() {
 				
 				system("cls");
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
-				cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+				cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 				break;
 				
 			}
@@ -1472,10 +1472,10 @@ int main() {
 				cout << endl << "\t" << ">>>> Consulta realizada com sucesso <<<<" << "\t" << endl;
 				cout << endl;
 				
-				// da opcao do usuario sair do laÁo for ou simplesmente voltar ao for
+				// da opcao do usuario sair do la√ßo for ou simplesmente voltar ao for
 				opcao4 = chamaMenu();
 				
-				// testa opÁ„o do usuario, se for 0 simplesmente imprime na tela pois o for criado È infinito
+				// testa op√ß√£o do usuario, se for 0 simplesmente imprime na tela pois o for criado √© infinito
 				if(opcao4 == 0){
 							
 					system("cls");
@@ -1488,7 +1488,7 @@ int main() {
 				else if(opcao4 == 99){
 							
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					break;
 								
 				}
@@ -1498,7 +1498,7 @@ int main() {
 								
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					break;
 								
 				}
@@ -1508,12 +1508,12 @@ int main() {
 			else if(opcao4 == -1){
 				
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
-				cout << "ERRO = n„o È possÌvel consultar um registro excluÌdo" << endl << endl;;
+				cout << "ERRO = n√£o √© poss√≠vel consultar um registro exclu√≠do" << endl << endl;;
 				break;
 			
 			}
 			
-			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tambÈm finaliza o programa
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tamb√©m finaliza o programa
 			else {
 								
 				cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl <<  endl;
@@ -1524,13 +1524,13 @@ int main() {
 			
 			
 		}
-		// listar lÛgico
+		// listar l√≥gico
 		else if(opcao == 5){
 			
 			int opcao5;
 			
 			system("cls");
-			cout << endl << "\t" << ">>>> Listar lÛgico <<<<" << "\t" << endl;
+			cout << endl << "\t" << ">>>> Listar l√≥gico <<<<" << "\t" << endl;
 			cout << endl;
 			
 			opcao5 = listarLogico();
@@ -1539,13 +1539,13 @@ int main() {
 			// testa o retorno 
 			if(opcao5 == 1){				
 				
-				cout << endl << endl << "\t" << ">>>> Listagem lÛgica feita com sucesso <<<<" << "\t" << endl;
+				cout << endl << endl << "\t" << ">>>> Listagem l√≥gica feita com sucesso <<<<" << "\t" << endl;
 				cout << endl;
 				
-				// da opcao do usuario sair do laÁo for ou simplesmente voltar ao for
+				// da opcao do usuario sair do la√ßo for ou simplesmente voltar ao for
 				opcao5 = chamaMenu();
 				
-				// testa opÁ„o do usuario, se for 0 simplesmente imprime na tela pois o for criado È infinito
+				// testa op√ß√£o do usuario, se for 0 simplesmente imprime na tela pois o for criado √© infinito
 				if(opcao5 == 0){
 							
 					system("cls");
@@ -1558,7 +1558,7 @@ int main() {
 				else if(opcao5 == 99){
 							
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					break;
 								
 				}
@@ -1568,14 +1568,14 @@ int main() {
 								
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					break;
 								
 				}
 
 			}
 			
-			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tambÈm finaliza o programa
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tamb√©m finaliza o programa
 			else {
 				
 				system("cls");
@@ -1586,13 +1586,13 @@ int main() {
 			}
 			
 		}
-		// listar fÌsico
+		// listar f√≠sico
 		else if(opcao == 6){
 			
 			int opcao6;
 			
 			system("cls");
-			cout << endl << "\t" << ">>>> Listar fÌsico <<<<" << "\t" << endl;
+			cout << endl << "\t" << ">>>> Listar f√≠sico <<<<" << "\t" << endl;
 			cout << endl;
 			
 			opcao6 = listarFisico();
@@ -1601,13 +1601,13 @@ int main() {
 			// testa o retorno 
 			if(opcao6 == 1){				
 				
-				cout << endl << endl << "\t" << ">>>> Listagem fÌsica feita com sucesso <<<<" << "\t" << endl;
+				cout << endl << endl << "\t" << ">>>> Listagem f√≠sica feita com sucesso <<<<" << "\t" << endl;
 				cout << endl;
 				
-				// da opcao do usuario sair do laÁo for ou simplesmente voltar ao for
+				// da opcao do usuario sair do la√ßo for ou simplesmente voltar ao for
 				opcao6 = chamaMenu();
 				
-				// testa opÁ„o do usuario, se for 0 simplesmente imprime na tela pois o for criado È infinito
+				// testa op√ß√£o do usuario, se for 0 simplesmente imprime na tela pois o for criado √© infinito
 				if(opcao6 == 0){
 							
 					system("cls");
@@ -1620,7 +1620,7 @@ int main() {
 				else if(opcao6 == 99){
 							
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					break;
 								
 				}
@@ -1630,14 +1630,14 @@ int main() {
 								
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					break;
 								
 				}
 
 			}
 			
-			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tambÈm finaliza o programa
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tamb√©m finaliza o programa
 			else {
 				
 				system("cls");
@@ -1666,10 +1666,10 @@ int main() {
 				cout << endl << endl << "\t" << ">>>> Propriedades retornadas com sucesso <<<<" << "\t" << endl;
 				cout << endl;
 				
-				// da opcao do usuario sair do laÁo for ou simplesmente voltar ao for
+				// da opcao do usuario sair do la√ßo for ou simplesmente voltar ao for
 				opcao7 = chamaMenu();
 				
-				// testa opÁ„o do usuario, se for 0 simplesmente imprime na tela pois o for criado È infinito
+				// testa op√ß√£o do usuario, se for 0 simplesmente imprime na tela pois o for criado √© infinito
 				if(opcao7 == 0){
 							
 					system("cls");
@@ -1682,7 +1682,7 @@ int main() {
 				else if(opcao7 == 99){
 							
 					system("cls");
-					cout << endl << "\t" << ">>>> Programa finalizado pelo usu·rio <<<<" << "\t" << endl;
+					cout << endl << "\t" << ">>>> Programa finalizado pelo usu√°rio <<<<" << "\t" << endl;
 					break;
 								
 				}
@@ -1692,14 +1692,14 @@ int main() {
 								
 					system("cls");
 					cout << endl << "\t" << ">>>> Programa finalizado por ERRO <<<<" << "\t" << endl << endl;
-					cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+					cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 					break;
 								
 				}
 							
 			}
 			
-			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tambÈm finaliza o programa
+			// caso o return seja diferente de 1 (sucesso), informa ao usuario e tamb√©m finaliza o programa
 			else {
 				
 				system("cls");
@@ -1715,16 +1715,16 @@ int main() {
 		else if(opcao == 99){
 			
 			system("cls");
-			cout << "PROGRAMA FINALIZADO PELO USU¡RIO" << endl << endl;
+			cout << "PROGRAMA FINALIZADO PELO USU√ÅRIO" << endl << endl;
 			break;
 			
 		}
-		// opÁ„o inv·lida
+		// op√ß√£o inv√°lida
 		else{
 			
 			system("cls");
 			cout << "PROGRAMA INTERROMPIDO POR ERRO" << endl << endl;
-			cout << "ERRO = È necess·rio digitar uma opÁ„o v·lida" << endl << endl;;
+			cout << "ERRO = √© necess√°rio digitar uma op√ß√£o v√°lida" << endl << endl;;
 			break;	
 					
 		}
