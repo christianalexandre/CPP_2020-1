@@ -15,6 +15,12 @@
   <li>Propriedades</li>
 </ul>
 
+<ul>
+  <li>
+    <a href="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/file/log.dat?raw=true">Arquivo com 15 registros</a>
+  </li>
+</ul>
+
 ## Demonstração
 <ul>
   <li>Menu</li>
@@ -58,9 +64,4 @@
   <img src="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/screenshots/Lista_fisico.png?raw=true">  
 </ul>
 
-<ul>
-  <li>
-    <a href="https://github.com/christianalexandre/CPP_Registro-de-logs/blob/master/file/log.dat?raw=true">Arquivo com 15 registros</a>
-  </li>
-</ul>
 
